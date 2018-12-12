@@ -8,6 +8,7 @@ export const UNAUTHORIZED = 'UNAUTHORIZED';
 export const REGISTER_USER = 'REGISTER_USER';
 export const LOGOUT_USER = 'LOGOUT_USER';
 export const LOCAL_STORAGE_LOAD = 'LOCAL_STORAGE_LOAD';
+export const ISP_LOCAL_STORAGE_LOAD = 'ISP_LOCAL_STORAGE_LOAD';
 export const FETCH_ALL_USERS = 'FETCH_ALL_USERS';
 export const IMPERSONATE_USER = 'IMPERSONATE_USER';
 export const STOP_IMPERSONATION = 'STOP_IMPERSONATING';
@@ -32,7 +33,7 @@ export function loginUser(login) {
 }
 
 export function registerUser(register) {
-  return dispatch => dispatch({
+    return dispatch => dispatch({
     type: REGISTER_USER,
     payload: fetch('/register', { method: 'POST', body: register }),
   }).then(() => {
@@ -46,6 +47,7 @@ export function logoutUser() {
     dispatch({
       type: LOGOUT_USER,
     });
+
     return dispatch({ type: UNAUTHORIZED });
   };
 }
@@ -54,6 +56,13 @@ export function loadFromLocalStorage(user) {
   return dispatch => dispatch({
     type: LOCAL_STORAGE_LOAD,
     payload: user,
+  });
+}
+
+export function loadIspFromLocalStorage(preferredIsp) {
+  return dispatch => dispatch({
+    type: ISP_LOCAL_STORAGE_LOAD,
+    payload: preferredIsp,
   });
 }
 
@@ -71,12 +80,12 @@ export function impersonateUser(id) {
   }).then(() => dispatch(push('/home')));
 }
 
-export function stopImpersonation() {
+export function stopImpersonation(userId) {
   return (dispatch) => {
     dispatch({
       type: STOP_IMPERSONATION,
     });
-    return dispatch(fetchCurrentUser()).then(() => dispatch(push('/home')));
+    return dispatch(fetchCurrentUser()).then(() => dispatch(push(`/home/admin/users#id${userId}`)));
   };
 }
 
@@ -134,4 +143,3 @@ export function editRole(userId, role) {
     return dispatch(push('/home'));
   });
 }
-

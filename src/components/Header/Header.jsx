@@ -3,7 +3,13 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import R from 'ramda';
+import Chip from 'material-ui/Chip'
+import Avatar from 'material-ui/Avatar'
+import SnackBar from 'material-ui/Snackbar'
+import Badge from 'material-ui/Badge'
+import Card from 'material-ui/Card'
 import AppBar from 'material-ui/AppBar';
+import RaisedButton from 'material-ui/RaisedButton'
 import FlatButton from 'material-ui/FlatButton';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
@@ -19,22 +25,58 @@ const renderLeftIcon = (user, logout, stopImpersonalization) => {
   if (!user) {
     return <FlatButton href='/about' label='Sobre el proyecto' />;
   }
-  const menuItems = [<MenuItem onTouchTap={logout} primaryText='Cerrar sesion' />];
+
+  function stopUserImpersonation() {
+    stopImpersonalization(user.id);
+  }
+
+  const menuItems = [(
+    <MenuItem
+      key='closeSession'
+      onTouchTap={logout}
+      primaryText='Cerrar sesión'
+    />
+  )];
   if (user.isImpersonating) {
-    menuItems.push(
-      <MenuItem onTouchTap={stopImpersonalization} primaryText='Terminar Impersonalización'/>
-    );
+
+      return (
+          <div>
+              <FlatButton
+                  label={'Impersonando a: ' + user.username}
+                  style={{marginRight: 'auto'}}
+                  labelStyle={{color: '#ffffff'}}
+              >
+              </FlatButton>
+
+              <RaisedButton onTouchTap={stopUserImpersonation}
+                            backgroundColor={'#559ac6'}
+                            style={{ marginRight: '50px'}}
+                            label='Terminar Impersonalización'
+              ></RaisedButton>
+              <IconMenu
+                  iconButtonElement={
+                      <IconButton><MoreVertIcon /></IconButton>
+                  }
+              >
+                  {menuItems}
+              </IconMenu>
+          </div>)
   }
   return (
-    <IconMenu
-      iconButtonElement={
-        <IconButton><MoreVertIcon /></IconButton>
-      }
-    >
-      {menuItems}
-    </IconMenu>
+      <div>
+          <IconMenu
+              iconButtonElement={
+                  <IconButton><MoreVertIcon /></IconButton>
+              }
+          >
+              {menuItems}
+          </IconMenu>
+      </div>
+
+
   );
 };
+
 
 
 export const Header = props => (
@@ -73,7 +115,7 @@ const mapStateToProps = store => ({
 
 const mapDispatchToProps = dispatch => ({
   logoutUser: () => dispatch(logoutUser()),
-  stopImpersonationFunc: () => dispatch(stopImpersonation()),
+  stopImpersonationFunc: (userId) => dispatch(stopImpersonation(userId)),
   clearAlert: id => dispatch(removeAlert(id)),
   redirectToHome: () => dispatch(push('/')),
 });
