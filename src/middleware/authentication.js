@@ -2,6 +2,7 @@ import { push } from 'react-router-redux';
 import {
   LOGOUT_USER,
   loadFromLocalStorage,
+  loadIspFromLocalStorage,
 } from '../store/domain/account/actions';
 
 let firstRun = true;
@@ -16,6 +17,13 @@ export default function authenticationMiddleware(store) {
       if (user) {
         store.dispatch(loadFromLocalStorage(JSON.parse(user)));
       }
+      // // Esto parece innecesario...
+      // Preferred ISP for searching for user
+      const isp = localStorage.getItem('preferredIsp');
+      if (isp) {
+        store.dispatch(loadIspFromLocalStorage(JSON.parse(isp)));
+      }
+      // // ...en cuyo caso se puede eliminar
     }
 
     if (type === LOGOUT_USER) {

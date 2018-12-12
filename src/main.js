@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 import createStore from './store/createStore';
 import AppContainer from './containers/AppContainer';
 
@@ -17,6 +18,11 @@ const MOUNT_NODE = document.getElementById('root');
 let render = () => {
   const routes = require('./routes/index').default(store);
 
+  try {
+    injectTapEventPlugin();
+  } catch (e) {
+    // Se ignora el error
+  }
   ReactDOM.render(
     <AppContainer store={store} routes={routes} />,
     MOUNT_NODE,

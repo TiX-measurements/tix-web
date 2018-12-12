@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import TextField from 'material-ui/TextField'
 import { connect } from 'react-redux';
 import R from 'ramda';
 import {
@@ -11,36 +12,97 @@ import {
   TableRowColumn,
 } from 'material-ui/Table';
 import { Card, CardTitle, CardText } from 'material-ui/Card';
+import ScrollableAnchor from 'react-scrollable-anchor';
 import { fetchAllUsers, impersonateUser, editRole } from '../../../../../store/domain/account/actions';
 
 class AdminView extends Component {
-
+    constructor(props){
+        super(props);
+        this.state = {searchValue: ''}
+    }
   componentWillMount() {
     this.props.fetchAllUsers();
+    this.impersonateButton = this.impersonateButton.bind(this);
+    this.changeRoleButton = this.changeRoleButton.bind(this);
   }
 
-  renderUsers(users, impersonateUserFunc, changeRole) {
-    return users.map(user => (
+  impersonateButton(currentUser, id, username) {
+    if (username !== 'admin' && (!currentUser || currentUser['username'] !== username)) {
+      return (
+        <span onTouchTap={() => this.props.impersonateUserFunc(id)} className='btn btn-info'>
+          Impersonar
+        </span>
+      );
+    } else {
+      return <span></span>;
+    }
+  }
+
+  changeRoleButton(currentUser, id, username, role) {
+    if (currentUser && currentUser["username"] === 'admin' && username !== 'admin') {
+      const buttonText = (role === 'admin' ? '+ Rol' : '- Rol');
+      return (
+        <span
+          onTouchTap={() => {
+            if (window.confirm('¿Está seguro de que desea realizar esta acción?')) {
+              changeRole(id, role === 'admin' ? 'user' : 'admin')
+            }
+          }}
+          className='btn btn-info'
+          style={{ marginLeft: '5px' }}
+        >
+          {buttonText}
+        </span>
+      );
+    }
+    return <span></span>;
+  }
+  renderSingleUser(user,impersonateUserFunc,changeRole,currentUser) {
+    return (
       <TableRow key={user.id}>
-        <TableRowColumn>{user.id}</TableRowColumn>
+        <ScrollableAnchor id={'id' + user.id}>
+          <TableRowColumn width={50}>{user.id}</TableRowColumn>
+        </ScrollableAnchor>
         <TableRowColumn>{user.username}</TableRowColumn>
+        <TableRowColumn width={100}>{user.measure_count ? user.measure_count : '-'}</TableRowColumn>
         <TableRowColumn>{user.role}</TableRowColumn>
         <TableRowColumn>
-          <div>
-            <span onTouchTap={() => impersonateUserFunc(user.id)} className='btn btn-info'>
-              Impersonar
-            </span>
-            <span
-              onTouchTap={() => changeRole(user.id, user.role === 'admin' ? 'user' : 'admin')}
-              className='btn btn-info'
-              style={{ marginLeft: '5px' }}
-            >
-              {user.role === 'admin' ? '- Rol' : '+ Rol'}
-            </span>
-          </div>
+            <div>
+                {this.impersonateButton(currentUser, user.id, user.username)}
+                {this.changeRoleButton(currentUser, user.id, user.username, user.role)}
+            </div>
         </TableRowColumn>
       </TableRow>
+    );
+  }
+  sortUsers(users) {
+    function compare(u1, u2) {
+      if (u1.measure_count > u2.measure_count)
+        return -1;
+      if (u1.measure_count < u2.measure_count)
+        return 1;
+      if (u1.id < u2.id)
+        return -1;
+      return 1;
+    }
+    return users.sort(compare);
+  }
+  renderUsers(users, impersonateUserFunc, changeRole,searchValue='') {
+    const currentUser = JSON.parse(localStorage.getItem('user'));
+    if (searchValue !== '') {
+        return this.sortUsers(users).filter((user) => {
+            return user.username .includes(searchValue);
+        }).map(user => (
+            this.renderSingleUser(user,impersonateUserFunc,changeRole,currentUser)
+        ));
+    }
+    return this.sortUsers(users).map(user => (
+        this.renderSingleUser(user,impersonateUserFunc,changeRole,currentUser)
     ));
+  }
+
+  handleTextFieldOnChange(users,impersonateUserFunc,changeRole,event) {
+     this.setState({searchValue: event.target.value});
   }
 
   render() {
@@ -49,25 +111,31 @@ class AdminView extends Component {
       impersonateUserFunc,
       changeRole,
     } = this.props;
-
     return (
       <Card className='card-margins'>
         <CardTitle
           title='Administración de usuarios'
-          subtitle='Visualizar e Impersonalizar los usuarios del sistema'
+          subtitle='Visualizar e impersonalizar los usuarios del sistema'
         />
         <CardText>
+          <TextField
+            floatingLabelText={'Buscar usuario por nombre'}
+            onChange={(e) => this.handleTextFieldOnChange(users,impersonateUserFunc,changeRole,e)}
+            style={{ marginLeft: '15px' }}>
+          </TextField>
+
           <Table>
             <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
               <TableRow>
-                <TableHeaderColumn>#</TableHeaderColumn>
+                <TableHeaderColumn width={50}>#</TableHeaderColumn>
                 <TableHeaderColumn>Nickname</TableHeaderColumn>
+                <TableHeaderColumn width={100}># mediciones</TableHeaderColumn>
                 <TableHeaderColumn>Rol</TableHeaderColumn>
                 <TableHeaderColumn>Acciones</TableHeaderColumn>
               </TableRow>
             </TableHeader>
             <TableBody displayRowCheckbox={false} showRowHover>
-              {this.renderUsers(users, impersonateUserFunc, changeRole)}
+              {this.renderUsers(users, impersonateUserFunc, changeRole,this.state.searchValue)}
             </TableBody>
           </Table>
         </CardText>
