@@ -27,7 +27,7 @@ export function setActiveInstallation(installationId, locationId) {
 
 export function setActualInstallation(installationId, locationId) {
   const actualLocationId = locationId || 0;
-  return (dispatch) => dispatch({
+  return dispatch => dispatch({
     type: SET_ACTIVE_INSTALLATION,
     installationId,
     actualLocationId,

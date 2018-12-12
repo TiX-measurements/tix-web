@@ -5,7 +5,7 @@ import {
   FETCH_LAST_REPORT_DATE,
   FETCH_ALL_REPORTS,
   FETCH_ADMIN_REPORTS,
-  FETCH_LAST_ADMIN_REPORT_DATE
+  FETCH_LAST_ADMIN_REPORT_DATE,
 } from '../actions';
 import { LOGOUT_USER } from '../../account/actions';
 
@@ -27,7 +27,7 @@ export default typeToReducer({
             downUsage.push(null);
             upQuality.push(null);
             downQuality.push(null);
-            dates.push(lastDate.add(25, 'minutes')); //Número mágico???
+            dates.push(lastDate.add(25, 'minutes')); // Número mágico???
             lastDate = moment(measure.timestamp);
           }
         } else {

@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 import createStore from './store/createStore';
 import AppContainer from './containers/AppContainer';
-import injectTapEventPlugin from 'react-tap-event-plugin';
 
 // ========================================================
 // Store Instantiation
@@ -20,7 +20,9 @@ let render = () => {
 
   try {
     injectTapEventPlugin();
-  } catch (e) {}
+  } catch (e) {
+    // Se ignora el error
+  }
   ReactDOM.render(
     <AppContainer store={store} routes={routes} />,
     MOUNT_NODE,
