@@ -1,5 +1,9 @@
 import 'whatwg-fetch';
 
+function getApiURL() {
+    return location.protocol + '//' + location.hostname + ':3001';
+}
+
 function getAuthentication(token) {
   if (token) {
     return { Authorization: `JWT ${token}` };
@@ -10,7 +14,7 @@ function getAuthentication(token) {
 export default function isoFetch(url, options = {}) {
   const method = options.method || 'GET';
   const body = JSON.stringify(options.body) || undefined;
-  const fullUrl = `https://tix.innova-red.net/api${url}`;
+  const fullUrl = `${getApiURL()}/api${url}`;
   return (token) => {
     const headers = {
       Accept: 'application/json',
