@@ -1,7 +1,14 @@
 import 'whatwg-fetch';
 
 function getApiURL() {
-    return location.protocol + '//' + location.hostname + ':3001';
+    if (location.hostname == 'localhost' || location.hostname == '127.0.0.1') {
+        // assume we are running in a local environment and
+        // just call the local service
+        return "http://localhost:3001"
+    } else {
+        // assume production and call the real service
+        return location.protocol + '//' + location.hostname
+    }
 }
 
 function getAuthentication(token) {

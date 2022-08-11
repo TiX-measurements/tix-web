@@ -5,9 +5,9 @@ import InnovaRed from '../assets/innovared.jpg';
 import ITBA from '../assets/itba.jpg';
 import Lacnic from '../assets/lacnic.jpg';
 import Udesa from '../assets/UdeSA.jpg';
-import UBA from '../assets/uba.jpg';
+import FIUBA from '../assets/fiuba.png'
 
-function Colaborator({ link, alt, image }) {
+function Colaborator({ link, alt, image, width }) {
   return (
     <li className='col-md-4 collaborator-center'>
       <a
@@ -18,6 +18,7 @@ function Colaborator({ link, alt, image }) {
           alt={alt}
           className='img-thumbnail img-sizing'
           src={image}
+          width={width}
         />
       </a>
     </li>
@@ -41,9 +42,8 @@ export const AboutView = () => (
         <div className='col-md-12'>
           <div className='row-fluid'>
             <ul className='thumbnails'>
-              <Colaborator alt='LacNIC' link='http://lacnic.net/' image={Lacnic} />
-              <Colaborator alt='ITBA' link='http://www.itba.edu.ar/' image={ITBA} />
-              <Colaborator alt='UDESA' link='http://www.udesa.edu.ar/' image={Udesa} />
+              <Colaborator alt='UBA' link='https://www.fi.uba.ar/' image={FIUBA} width="285" />
+              <Colaborator alt='LacNIC' link='http://lacnic.net/' image={Lacnic} width="260"/>
             </ul>
           </div>
         </div>
@@ -51,8 +51,8 @@ export const AboutView = () => (
         <div className='col-md-12 offset2'>
           <div className='row-fluid'>
             <ul className='thumbnails'>
-              <Colaborator alt='InnovaRED' link='http://www.innova-red.net/' image={InnovaRed} />
-              <Colaborator alt='UBA' link='http://www.uba.ar/' image={UBA} />
+              <Colaborator alt='ITBA' link='http://www.itba.edu.ar/' image={ITBA} width="200" />
+              <Colaborator alt='UDESA' link='http://www.udesa.edu.ar/' image={Udesa} width="200" />
             </ul>
           </div>
         </div>
@@ -67,7 +67,7 @@ export const AboutView = () => (
             <a href='http://www.unsa.edu.ar/'>UnSA</a>)</p>
           <p>Dr. Ing. Jos&eacute; Ignacio Alvarez-Hamelin
             (<a href='http://www.conicet.gov.ar/new_scp/detalle.php?id=24474&datos_academicos=yes' >CONICET</a>,
-            <a href='http://www.uba.ar/'>UBA</a> e <a href='http://www.itba.edu.ar/'>ITBA</a>)</p>
+            <a href='http://www.uba.ar/'>UBA</a>)</p>
         </div>
       </div>
       <hr />
