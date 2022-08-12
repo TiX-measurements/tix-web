@@ -1,7 +1,9 @@
 import 'whatwg-fetch';
 
 function getApiURL() {
-    return location.protocol + '//' + location.hostname + ':3001';
+    // the frontend should be served from a web server that redirects
+    // requests to /api to port 3001 (or wherever the tix-api is listening)
+    return location.protocol + '//' + location.host;
 }
 
 function getAuthentication(token) {
