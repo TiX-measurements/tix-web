@@ -10,7 +10,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 const Captcha = props => (
   <ReCAPTCHA
-    sitekey='6LexqSAUAAAAAKD-PBs2MePg0TCpRuyFi4-HJ66R'
+    sitekey='6LfrAmwhAAAAAJWllaYE5HeCgtzvkW9jhhHTqrqe'
     onChange={props.input.onChange}
   />
 );
