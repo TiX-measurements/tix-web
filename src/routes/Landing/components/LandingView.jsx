@@ -52,7 +52,7 @@ class LandingView extends Component {
         <div className='row'>
           <div className='col-md-4'>
             <h4>
-              { 'Cuál es el objetivo?' }
+              { '¿Cuál es el objetivo?' }
             </h4>
             <p>
               {
@@ -65,7 +65,7 @@ class LandingView extends Component {
           </div>
           <div className='col-md-4'>
             <h4>
-              { 'Qué resultados arroja?' }
+              { '¿Qué resultados arroja?' }
             </h4>
             <p>
               {
@@ -78,7 +78,7 @@ class LandingView extends Component {
           </div>
           <div className='col-md-4'>
             <h4>
-              { 'Cómo puedo usar TiX?' }
+              { '¿Cómo puedo usar TiX?' }
             </h4>
             <p>
               {
