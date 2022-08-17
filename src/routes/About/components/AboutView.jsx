@@ -63,24 +63,34 @@ export const AboutView = () => (
         <div className='col-md-12'>
           <h3>Investigadores responsables</h3>
           <p>Dr. Hern&aacute;n Galperin
-            (<a href='http://www.conicet.gov.ar/new_scp/detalle.php?id=38012&datos_academicos=yes'>CONICET</a> y
-            <a href='http://www.unsa.edu.ar/'>UnSA</a>)</p>
+            (<a href='https://annenberg.usc.edu/faculty/hernan-galperin'>USC, Anneberg</a>, USA)
+          </p>
           <p>Dr. Ing. Jos&eacute; Ignacio Alvarez-Hamelin
             (<a href='http://www.conicet.gov.ar/new_scp/detalle.php?id=24474&datos_academicos=yes' >CONICET</a>,
-            <a href='http://www.uba.ar/'>UBA</a>)</p>
+            <a href='http://www.uba.ar/'> Facultad de Ingeniería, UBA</a>, Argentina)</p>
         </div>
       </div>
       <hr />
       <div className='row'>
         <div className='col-md-12'>
           <h3>Colaboradores</h3>
-          <p>Federicio Ezequiel Garcia (<a href='http://www.uba.ar/' target='_blank'>UBA</a>)</p>
-          <p>Cristian Pereyra (<a href='http://www.itba.edu.ar/' target='_blank'>ITBA</a>)</p>
-          <p>Jose Ignacio Galindo (<a href='http://www.itba.edu.ar/' target='_blank'>ITBA</a>)</p>
-          <p>Alan Karpovsky (<a href='http://www.itba.edu.ar/' target='_blank'>ITBA</a>)</p>
-          <p>Nicolas Loreti (<a href='http://www.itba.edu.ar/' target='_blank'>ITBA</a>)</p>
-          <p>Paula Verghelet (<a href='http://www.uba.ar/' target='_blank'>UBA</a>)</p>
-          <p>Ing. Esteban Poggio (<a href='http://www.uba.ar/' target='_blank'>UBA</a>)</p>
+          <p>Axel Brian Erlich (<a href='http://www.uba.ar/' target='_blank'>Facultad de Ingeniería, UBA</a>, Argentina)</p>
+          <p>Matias Ezequiel Iglesias (<a href='http://www.uba.ar/' target='_blank'>Facultad de Ingeniería, UBA</a>, Argentina)</p>
+          <p>Axel Lijdens (<a href='http://www.uba.ar/' target='_blank'>Facultad de Ingeniería, UBA</a>, Argentina)</p>
+          <p>Natalia Giselle Bartolom&eacute; (<a href='http://www.uba.ar/' target='_blank'>Facultad de Ingeniería, UBA</a>, Argentina)</p>
+          <p>Agust&iacute;n Eduardo Caram&eacute;s (<a href='http://www.uba.ar/' target='_blank'>Facultad de Ingenier&iacute;a, UBA</a>, Argentina)</p>
+          <p>Mart&iacute;n Cura (<a href='http://www.uba.ar/' target='_blank'>Facultad de Ingeniería, UBA</a>, Argentina)</p>
+          <p>Octavio Iogha (<a href='http://www.uba.ar/' target='_blank'>Facultad de Ingeniería, UBA</a>, Argentina)</p>
+          <p>Luis Ali (<a href='http://www.uba.ar/' target='_blank'>Facultad de Ingeniería, UBA</a>, Argentina)</p>
+          <p>Eduardo Neira (<a href='http://www.uba.ar/' target='_blank'>Facultad de Ingeniería, UBA</a>, Argentina)</p>
+          <p>Gast&oacute;n Snaider (<a href='http://www.uba.ar/' target='_blank'>Facultad de Ingeniería, UBA</a>, Argentina)</p>
+          <p>Federicio Ezequiel Garc&iacute;a (<a href='http://www.uba.ar/' target='_blank'>Facultad de Ingeniería, UBA</a>, Argentina)</p>
+          <p>Cristian Pereyra (<a href='http://www.itba.edu.ar/' target='_blank'>ITBA</a>, Argentina)</p>
+          <p>Jose Ignacio Galindo (<a href='http://www.itba.edu.ar/' target='_blank'>ITBA</a>, Argentina)</p>
+          <p>Alan Karpovsky (<a href='http://www.itba.edu.ar/' target='_blank'>ITBA</a>, Argentina)</p>
+          <p>Nicolas Loreti (<a href='http://www.itba.edu.ar/' target='_blank'>ITBA</a>, Argentina)</p>
+          <p>Paula Verghelet (<a href='http://www.uba.ar/' target='_blank'>Facultad de Ingeniería, UBA</a>, Argentina)</p>
+          <p>Ing. Esteban Poggio (<a href='http://www.uba.ar/' target='_blank'>Facultad de Ingeniería, UBA</a>, Argentina)</p>
           <p>Estudiantes de Introduccion a los sistemas distribuidos, 2do cuatrimestre 2012.</p>
         </div>
       </div>
