@@ -23,6 +23,12 @@ class DownloadView extends Component {
             </ul>
           </div>
         </div>
+        <div className='row'>
+          <div className='span12'>
+            <h4>Cliente web</h4>
+            <p>También puede descargarse y compilar el cliente Java desde <a href="https://github.com/TiX-measurements/tix-time-client">Github</a>.</p>
+          </div>
+        </div>
 
       </section>
     );
